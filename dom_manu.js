@@ -3,6 +3,7 @@ console.log('Javascript Loaded');
 document.getElementById('generate').addEventListener('click',tableEngine);
 
 function tableEngine(){
+  // clearPage();
   var n = Number(document.getElementById('foo').value);
   console.log('Input value = ' + n);
   table(n);
@@ -11,13 +12,12 @@ function tableEngine(){
 function table(value){
 
   //-----Method-----
-  /*This method appends all td, tr and table directly to the body itself. For the
-  next practice, try to create table in the parallel space then pend the completed
-  table into the HTML document.*/
+  /*This method appends the <table>'s body into the html document first, then appends
+    its <td> and <tr> after each of their creation.*/
 
   var a = document.createElement('table');
-  a.setAttribute('id',"table");
-  var b, c;
+  // a.setAttribute('id',"table");
+  document.body.appendChild(a);
 
   //-----Nested For Loops----
   /*The following will be a nested for loop. The encasing For-loops will simulate
@@ -25,6 +25,7 @@ function table(value){
   the content, thankfully we can multiply both For-Loop-Variable-Iterators to get
   the cell content.*/
 
+  var b, c;
   for(i=1; i<=value; i++){
     b = document.createElement('tr');
     b.style.border ="2px solid golderrod";
@@ -35,9 +36,13 @@ function table(value){
       c.style.borderCollapse = "collapse";
       c.style.width = '50px';
       c.style.textAlign = "center";
-      document.body.appendChild(c);
+      a.appendChild(c); //Appends directly to parent Table
       // c.setAttribute('id','td'+j)
     }
-    document.body.appendChild(b);
+    a.appendChild(b);//Appends directly to parent Table
   }
 }
+
+// function clearPage(){
+//   var parent =
+// }
