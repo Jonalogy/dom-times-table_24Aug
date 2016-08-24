@@ -3,7 +3,7 @@ console.log('Javascript Loaded');
 document.getElementById('generate').addEventListener('click',tableEngine);
 
 function tableEngine(){
-  // clearPage();
+  clearPage();
   var n = Number(document.getElementById('foo').value);
   console.log('Input value = ' + n);
   table(n);
@@ -29,6 +29,7 @@ function table(value){
   for(i=1; i<=value; i++){
     b = document.createElement('tr');
     b.style.border ="2px solid golderrod";
+    a.appendChild(b);//Appends directly to parent Table
     for(j=1; j<=value; j++){
       c = document.createElement('td');
       c.textContent=i*j;
@@ -36,13 +37,13 @@ function table(value){
       c.style.borderCollapse = "collapse";
       c.style.width = '50px';
       c.style.textAlign = "center";
-      a.appendChild(c); //Appends directly to parent Table
+      b.appendChild(c); //Appends directly to parent Table
       // c.setAttribute('id','td'+j)
     }
-    a.appendChild(b);//Appends directly to parent Table
   }
 }
 
-// function clearPage(){
-//   var parent =
-// }
+function clearPage(){
+  var parent = document.getElementsByTagName('table');//Pre-checked in chrome that table indexed at 0 placement.
+  // parent.removeChild(parent[0]);
+}
